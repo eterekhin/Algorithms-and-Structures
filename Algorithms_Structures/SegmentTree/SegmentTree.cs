@@ -16,7 +16,7 @@ public class SegmentTree<T> : ISegmentTree<T> where T : IMergeableValue<T>
     private SegmentTree(int n)
     {
         _size = 1 << (int)Math.Ceiling(Math.Log2(n));
-        _items = new T[2 * _size];
+        _items = Enumerable.Repeat(T.NeutralElement, 2 * _size).ToArray();
     }
 
     private void Build(T[] data, int index, int left, int right)
