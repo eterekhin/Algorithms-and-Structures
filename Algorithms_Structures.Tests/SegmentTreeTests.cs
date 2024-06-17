@@ -4,20 +4,20 @@ namespace Algorithms_Structures.Tests;
 
 public class SegmentTreeTests
 {
-    private record struct IntItem(int Value) : IMergeableValue<IntItem>
+    private record struct SumIntItem(int Value) : IMergeableValue<SumIntItem>
     {
-        public static IntItem Merge(IntItem x, IntItem y) => x.Value + y.Value;
+        public static SumIntItem Merge(SumIntItem x, SumIntItem y) => x.Value + y.Value;
 
-        public static IntItem NeutralElement => 0;
+        public static SumIntItem NeutralElement => 0;
 
-        public static implicit operator IntItem(int value) => new(value);
-        public static implicit operator int(IntItem value) => value.Value;
+        public static implicit operator SumIntItem(int value) => new(value);
+        public static implicit operator int(SumIntItem value) => value.Value;
     }
 
     [Fact]
     public void SimpleTest()
     {
-        var tree = SegmentTree<IntItem>.Build([1, 2, 3, 4, 5, 6]);
+        var tree = SegmentTree<SumIntItem>.Build([1, 2, 3, 4, 5, 6]);
 
         Assert.Equal(21, tree.Calculate(0, 6).Value);
         Assert.Equal(15, tree.Calculate(0, 5).Value);
