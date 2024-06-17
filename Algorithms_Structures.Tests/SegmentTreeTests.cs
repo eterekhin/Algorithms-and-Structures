@@ -14,6 +14,14 @@ public class SegmentTreeTests
         public static implicit operator int(SumIntItem value) => value.Value;
     }
 
+    private record struct MultIntItem(int Value) : IMergeableValue<MultIntItem>
+    {
+        public static MultIntItem Merge(MultIntItem x, MultIntItem y) => x.Value * y.Value;
+        public static MultIntItem NeutralElement => 1;
+        public static implicit operator MultIntItem(int value) => new(value);
+        public static implicit operator int(MultIntItem value) => value.Value;
+    }
+    
     [Fact]
     public void SimpleTest()
     {
@@ -38,5 +46,12 @@ public class SegmentTreeTests
         Assert.Equal(150, tree.Calculate(0, 5).Value);
         tree.Set(5, 60);
         Assert.Equal(210, tree.Calculate(0, 6).Value);
+    }
+
+    [Fact]
+    public void RightAddedItemsInitializedWithNeutralElementTest()
+    {
+        var tree = SegmentTree<MultIntItem>.Build([1, 2, 3]);
+        Assert.Equal(6, tree.Calculate(0, 4).Value);
     }
 }
