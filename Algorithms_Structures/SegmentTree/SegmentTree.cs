@@ -5,6 +5,9 @@ public class SegmentTree<T> : ISegmentTree<T> where T : IMergeableValue<T>
     private readonly T[] _items;
     private readonly int _size;
 
+    /// <summary>
+    /// Complexity :O(items.Count()) 
+    /// </summary>
     public static SegmentTree<T> Build(IEnumerable<T> items)
     {
         var array = items.ToArray();
@@ -66,7 +69,13 @@ public class SegmentTree<T> : ISegmentTree<T> where T : IMergeableValue<T>
     private static int GetRightChildIndex(int i) => 2 * i + 1;
     private static int GetLeftChildIndex(int i) => 2 * i + 2;
 
+    /// <summary>
+    /// Complexity : O(log2(_items.Length))
+    /// </summary>
     public void Set(int setIndex, T setValue) => Set(setIndex, setValue, 0, 0, _size);
 
+    /// <summary>
+    /// Complexity : O(log2(_items.Length))
+    /// </summary>
     public T Calculate(int left, int right) => Calculate(left, right, 0, 0, _size);
 }
