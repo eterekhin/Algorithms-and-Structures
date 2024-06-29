@@ -66,8 +66,8 @@ public class SegmentTree<T> : ISegmentTree<T> where T : IMergeableValue<T>
             Calculate(calcLeft, calcRight, GetRightChildIndex(index), mid, right));
     }
 
-    private static int GetRightChildIndex(int i) => 2 * i + 1;
-    private static int GetLeftChildIndex(int i) => 2 * i + 2;
+    private static int GetRightChildIndex(int i) => 2 * i + 2;
+    private static int GetLeftChildIndex(int i) => 2 * i + 1;
 
     /// <summary>
     /// Complexity : O(log2(_items.Length))
