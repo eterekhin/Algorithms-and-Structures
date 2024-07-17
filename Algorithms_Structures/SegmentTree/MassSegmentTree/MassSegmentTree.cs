@@ -7,11 +7,7 @@ public class MassSegmentTree<T> : IMassSegmentTree<T> where T : IMassMergeableVa
     private readonly T[] _items;
     private readonly int _size;
 
-    public static MassSegmentTree<T> Build(int numberOfElements)
-    {
-        var tree = new MassSegmentTree<T>(numberOfElements);
-        return tree;
-    }
+    public static MassSegmentTree<T> Build(int numberOfElements) => new(numberOfElements); 
 
     private MassSegmentTree(int n)
     {
@@ -54,10 +50,8 @@ public class MassSegmentTree<T> : IMassSegmentTree<T> where T : IMassMergeableVa
     private void Propagate(int parentIndex, int childIndex) =>
         _items[childIndex] = GetPropagatedToChildValue(_items[childIndex], _items[parentIndex]);
 
-    private static T GetPropagatedToChildValue(T child, T parent)
-    {
-        return parent.HasNothingToPropagate() ? child : T.ApplyValue(child, parent);
-    }
+    private static T GetPropagatedToChildValue(T child, T parent) => 
+        parent.HasNothingToPropagate() ? child : T.ApplyValue(child, parent);
 
     private T Get(int getLeft, int getRight, int index, int left, int right)
     {
