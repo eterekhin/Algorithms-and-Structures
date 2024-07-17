@@ -24,6 +24,9 @@ public class MassSegmentTreeTests
         public static OrAndValue CreateResultValue(long result) => new(result, result);
         
         public bool HasNothingToPropagate() => ValueAppliedToSegment == OperationOnSegmentDefaultValue;
+
+        public override string ToString() =>
+            $"\"|\" to apply on segment: {ValueAppliedToSegment}, \"&\" result on segment: {ResultValue}    ";
     }
 
     [Fact]

@@ -83,7 +83,7 @@ public class MassSegmentTree<T> : IMassSegmentTree<T> where T : IMassMergeableVa
         for (var powerOf2 = 0; 1 << powerOf2 < _items.Length; powerOf2++)
         {
             for (int start = (1 << powerOf2) - 1, end = (1 << (powerOf2 + 1)) - 1; start < end; start++)
-                builder.Append($"Mul: {_items[start].ValueAppliedToSegment}, Sum: {_items[start].ResultValue}    ");
+                builder.Append(_items[start]);
 
             builder.AppendLine();
         }
