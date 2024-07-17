@@ -21,7 +21,7 @@ public class MassSegmentTreeTests
             static long OperateOnSegment(long a, long b) => a | b;
         }
 
-        public static OrAndValue CreateResultValue(long result) => new(0, result);
+        public static OrAndValue CreateResultValue(long result) => new(result, result);
         
         public bool HasNothingToPropagate() => ValueAppliedToSegment == OperationOnSegmentDefaultValue;
     }
@@ -47,5 +47,15 @@ public class MassSegmentTreeTests
             tree.Modify(i - 1, i, newVal);
         
         Assert.Equal(10, tree.Get(0, 10).ResultValue);
+    }
+
+    [Fact]
+    public void PropagationTest()
+    {
+        var tree = MassSegmentTree<OrAndValue>.Build(10);
+        
+        tree.Modify(0, 4, OrAndValue.CreateResultValue(4));
+        
+        Assert.Equal(4, tree.Get(0, 2).ResultValue);
     }
 }
