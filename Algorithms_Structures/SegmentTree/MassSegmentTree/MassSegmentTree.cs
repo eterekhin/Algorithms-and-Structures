@@ -44,6 +44,8 @@ public class MassSegmentTree<T> : IMassSegmentTree<T> where T : IMassMergeableVa
     {
         Propagate(index, GetLeftChildIndex(index));
         Propagate(index, GetRightChildIndex(index));
+        
+        // After propagation the value should be reassigned as it happens now in Modify and Get methods
         _items[index] = T.CreateDefaultValue;
     }
 

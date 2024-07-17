@@ -61,4 +61,15 @@ public class MassSegmentTreeTests
         
         Assert.Equal(4, tree.Get(0, 2).ResultValue);
     }
+
+    [Fact]
+    public void ValueOfParentDoesntClearAfterPropagationTest()
+    {
+        var tree = MassSegmentTree<OrAndValue>.Build(10);
+        
+        tree.Modify(0, 4, OrAndValue.CreateResultValue(4));
+        tree.Modify(0, 2, OrAndValue.CreateResultValue(4));
+        
+        Assert.Equal(4, tree.Get(0, 4).ResultValue);
+    }
 }
