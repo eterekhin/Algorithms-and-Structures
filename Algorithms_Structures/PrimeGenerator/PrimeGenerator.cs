@@ -15,12 +15,13 @@ public class PrimeGenerator(int count)
         yield return 2;
         _primeMultiplies.Add(new PrimeNumberMultiply(2, 2 * 2));
 
-        long value = 2;
+        long value = 1;
         var obtained = 1;
-        while (value++ < long.MaxValue)
+        while (value != long.MaxValue)
         {
             if (obtained == count) yield break;
             
+            value += 2;
             if (!IsPrime(value)) continue;
             obtained++;
             _primeMultiplies.Add(new PrimeNumberMultiply(value, value * 2));
