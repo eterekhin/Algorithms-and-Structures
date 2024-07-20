@@ -2,9 +2,9 @@ namespace Algorithms_Structures.PrimeGenerator;
 
 public class PrimeGenerator(int count)
 {
-    private class PrimeNumberMultiply(long number, long multiply)
+    private class PrimeNumberMultiply(long number)
     {
-        public long Multiply { get; set; } = multiply;
+        public long Multiply { get; set; } = 2 * number;
         public long Number { get; } = number;
     }
 
@@ -13,7 +13,7 @@ public class PrimeGenerator(int count)
     public IEnumerable<long> Generate()
     {
         yield return 2;
-        _primeMultiplies.Add(new PrimeNumberMultiply(2, 2 * 2));
+        _primeMultiplies.Add(new PrimeNumberMultiply(2));
 
         long value = 1;
         var obtained = 1;
@@ -24,7 +24,7 @@ public class PrimeGenerator(int count)
             value += 2;
             if (!IsPrime(value)) continue;
             obtained++;
-            _primeMultiplies.Add(new PrimeNumberMultiply(value, value * 2));
+            _primeMultiplies.Add(new PrimeNumberMultiply(value));
             yield return value;
         }
     }
